@@ -1,6 +1,6 @@
 {
   "name": "@dhemeira/convert-image-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Converts .jpg and .png files to .webp or resizes them and puts them into the specified output folder.",
   "main": "index.js",
   "scripts": {
