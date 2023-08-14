@@ -1,4 +1,4 @@
-# convert-image-cli
+# convert-image
 
 This is a package for converting `.jpg` and `.png` files to `.webp` and/or to resize them to a given width and/or height.
 The results are placed inside the specified folder.
@@ -10,7 +10,7 @@ Choose one of the following 3:
 ### Install and use globally:
 
 ```bash
-npm i @dhemeira/convert-image-cli -g
+npm i @dhemeira/convert-image -g
 ```
 
 After that, use this command to convert images:
@@ -26,7 +26,7 @@ convert-image
 Use this command to convert images:
 
 ```bash
-npx @dhemeira/convert-image-cli
+npx @dhemeira/convert-image
 ```
 
 ---
@@ -34,12 +34,12 @@ npx @dhemeira/convert-image-cli
 ### Install and use in your project:
 
 ```bash
-npm i @dhemeira/convert-image-cli
+npm i @dhemeira/convert-image
 ```
 
 Add it to your `package.json` scripts:
 
-```bash
+```json
 "scripts": {
   "convert-image": "convert-image",
   ...
@@ -65,17 +65,17 @@ Output:
 ```
 Usage: convert-image [options] <input_directory>
 
-Converts .jpg and .png files to .webp or resizes them and puts them into the specified output folder.
+converts .jpg and .png files to .webp or resizes them and puts them into the specified output folder.
 
 Arguments:
-  input_directory    The input directory
+  input_directory    the input directory
 
 Options:
-  --output [output]  The output directory. If not specified, it will be input_directory\converted.
-  --width [width]    Resize the image to this width. If not specificed, the width will be the original width.
-  --height [height]  Resize the image to this height. If not specificed, the height will be the original height.
-  -w, --webp         Convert the image to .webp extension.
-  --only [files...]  Convert only these files.
+  --output [output]  the output directory. If not specified, it will be input_directory\converted.
+  --width [width]    resize the image to this width. If not specificed, the width will be the original width.
+  --height [height]  resize the image to this height. If not specificed, the height will be the original height.
+  --only [files...]  convert only these files.
+  -w, --webp         convert the image to .webp extension.
   -h, --help         display help for command
 ```
 

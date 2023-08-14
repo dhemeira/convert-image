@@ -1,7 +1,7 @@
 {
-  "name": "@dhemeira/convert-image-cli",
-  "version": "1.2.1",
-  "description": "An npm package to mass convert .jpg and .png files to .webp or resize them using a cli tool.",
+  "name": "@dhemeira/convert-image",
+  "version": "1.2.2",
+  "description": "An npm package to mass convert .jpg and .png files to .webp or resize them.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
@@ -25,12 +25,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dhemeira/convert-image-cli.git"
+    "url": "git+https://github.com/dhemeira/convert-image.git"
   },
   "bugs": {
-    "url": "https://github.com/dhemeira/convert-image-cli/issues"
+    "url": "https://github.com/dhemeira/convert-image/issues"
   },
-  "homepage": "https://github.com/dhemeira/convert-image-cli#readme",
+  "homepage": "https://github.com/dhemeira/convert-image#readme",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
