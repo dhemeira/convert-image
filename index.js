@@ -24,6 +24,10 @@ try {
       'Resize the image to this height. If not specificed, the height will be the original height.'
     )
     .option('-w, --webp', 'Convert the image to .webp extension.')
+    .option(
+      '--only [files...]',
+      'Convert only these files.'
+    )
     .action(convert).configureOutput({
       outputError: (str) => {
         throw new Error(str.trim())

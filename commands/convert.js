@@ -11,7 +11,7 @@ const NewLine = Object.freeze({
   After: 'after',
 });
 
-function convert(input_directory, { output, width, height, webp = false }) {
+function convert(input_directory, { output, width, height, only, webp = false }) {
   try {
     if (!input_directory.includes(':\\')) input_directory = `${process.cwd()}\\${input_directory}`;
 
@@ -19,6 +19,13 @@ function convert(input_directory, { output, width, height, webp = false }) {
     if (output) {
       if (output.includes(':\\')) _outputDirectory = output;
       else _outputDirectory = `${input_directory}\\${output}`;
+    }
+
+    let _convertAll = true
+    if (typeof only !== 'undefined' && only !== true) {
+      _convertAll = false
+    } else if (only) {
+      throw new SyntaxError(`Only is missing argument.`);
     }
 
     let _imageWidth = handleDimension(width, 'Width');
@@ -38,14 +45,16 @@ function convert(input_directory, { output, width, height, webp = false }) {
       const _filePath = `${input_directory}/${file}`;
       const _isFileADirectory = fs.lstatSync(_filePath).isDirectory();
       if (!_isFileADirectory && (file.includes('.jpg') || file.includes('.png'))) {
-        _convertedCount++;
-        const converting = sharp(`${input_directory}/${file}`).rotate();
-        if (webp)
-          converting
-            .webp()
-            .resize(_imageWidth, _imageHeight)
-            .toFile(`${_outputDirectory}/${file.replace('.jpg', '').replace('.png', '')}.webp`);
-        else converting.resize(_imageWidth, _imageHeight).toFile(`${_outputDirectory}/${file}`);
+        if (_convertAll || only.includes(file)) {
+          _convertedCount++;
+          const converting = sharp(`${input_directory}/${file}`).rotate();
+          if (webp)
+            converting
+              .webp()
+              .resize(_imageWidth, _imageHeight)
+              .toFile(`${_outputDirectory}/${file.replace('.jpg', '').replace('.png', '')}.webp`);
+          else converting.resize(_imageWidth, _imageHeight).toFile(`${_outputDirectory}/${file}`);
+        }
       }
     });
 
@@ -79,7 +88,7 @@ function handleDimension(dim, type) {
         throw new SyntaxError(`${type} is not a number.`);
       }
     } else if (dim) {
-      throw new SyntaxError(`${type} argument is missing.`);
+      throw new SyntaxError(`${type} is missing argument.`);
     }
     return _dim;
   } catch (error) {

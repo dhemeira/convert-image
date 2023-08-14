@@ -1,11 +1,11 @@
 # convert-image-cli
 
-**Currently only works with folders but in the future single file support is planned.**
-
 This is a package for converting `.jpg` and `.png` files to `.webp` and/or to resize them to a given width and/or height.
 The results are placed inside the specified folder.
 
 ## Usage:
+
+Choose one of the following 3:
 
 ### Install and use globally:
 
@@ -13,8 +13,20 @@ The results are placed inside the specified folder.
 npm i @dhemeira/convert-image-cli -g
 ```
 
+After that, use this command to convert images:
+
 ```bash
 convert-image
+```
+
+---
+
+### Use with npx:
+
+Use this command to convert images:
+
+```bash
+npx @dhemeira/convert-image-cli
 ```
 
 ---
@@ -25,8 +37,19 @@ convert-image
 npm i @dhemeira/convert-image-cli
 ```
 
+Add it to your `package.json` scripts:
+
 ```bash
-npx convert-image
+"scripts": {
+  "convert-image": "convert-image",
+  ...
+}
+```
+
+After that, use this command to convert images:
+
+```bash
+npm run convert-image
 ```
 
 ## Examples
@@ -52,6 +75,7 @@ Options:
   --width [width]    Resize the image to this width. If not specificed, the width will be the original width.
   --height [height]  Resize the image to this height. If not specificed, the height will be the original height.
   -w, --webp         Convert the image to .webp extension.
+  --only [files...]  Convert only these files.
   -h, --help         display help for command
 ```
 
@@ -89,4 +113,10 @@ convert-image test --width 500 --height 700
 
 ```bash
 convert-image test --width 500 --height 700 --webp --output test_output
+```
+
+### Run the previous example only on file1.jpg and file2.png
+
+```bash
+convert-image test --width 500 --height 700 --webp --output test_output --only file1.jpg file2.png
 ```
