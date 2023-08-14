@@ -1,0 +1,38 @@
+{
+  "name": "@dhemeira/convert-image-cli",
+  "version": "1.0.0",
+  "description": "Converts .jpg and .png files to .webp or resizes them and puts them into the specified output folder.",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write .",
+    "commit": "cz"
+  },
+  "bin": {
+    "convert-image": "index.js"
+  },
+  "keywords": [],
+  "author": "dhemeira (https://github.com/dhemeira)",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^11.0.0",
+    "prettier": "^3.0.1",
+    "sharp": "^0.32.4"
+  },
+  "devDependencies": {
+    "commitizen": "^4.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhemeira/convert-image-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dhemeira/convert-image-cli/issues"
+  },
+  "homepage": "https://github.com/dhemeira/convert-image-cli#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
