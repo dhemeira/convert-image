@@ -79,44 +79,44 @@ Options:
   -h, --help         display help for command
 ```
 
-### Converting test folder's content into `.webp` files and placing them into the default output folder
+### Converting example_input folder's content into `.webp` files and placing them into the default output folder
 
 ```bash
-convert-image test --webp
+convert-image example_input --webp
 ```
 
-### Specify output to test_output folder
+### Specify output to example_output folder
 
 ```bash
-convert-image test --webp --output test_output
+convert-image example_input --webp --output example_output
 ```
 
 ### Resize the images to width 500px and keep aspect ratio
 
 ```bash
-convert-image test --width 500
+convert-image example_input --width 500
 ```
 
 ### Resize the images to height 700px and keep aspect ratio
 
 ```bash
-convert-image test --height 700
+convert-image example_input --height 700
 ```
 
 ### Resize the images to width 500px and height 700px. The resizing method is `cover`
 
 ```bash
-convert-image test --width 500 --height 700
+convert-image example_input --width 500 --height 700
 ```
 
-### Resize image, convert it to `.webp` and save to test_output folder
+### Resize image, convert it to `.webp` and save to example_output folder
 
 ```bash
-convert-image test --width 500 --height 700 --webp --output test_output
+convert-image example_input --width 500 --height 700 --webp --output example_output
 ```
 
 ### Run the previous example only on file1.jpg and file2.png
 
 ```bash
-convert-image test --width 500 --height 700 --webp --output test_output --only file1.jpg file2.png
+convert-image example_input --width 500 --height 700 --webp --output example_output --only file1.jpg file2.png
 ```

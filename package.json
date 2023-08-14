@@ -1,6 +1,6 @@
 {
   "name": "@dhemeira/convert-image-cli",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "An npm package to mass convert .jpg and .png files to .webp or resize them using a cli tool.",
   "main": "index.js",
   "scripts": {
