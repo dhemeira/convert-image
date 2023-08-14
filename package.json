@@ -4,6 +4,7 @@
   "description": "Converts .jpg and .png files to .webp or resizes them and puts them into the specified output folder.",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
     "format": "prettier --write .",
     "commit": "cz"
   },
