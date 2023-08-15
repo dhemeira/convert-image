@@ -11,7 +11,7 @@ describe("The convert-image with --width and --height options", () => {
 
     expect(result.code).toBe(1);
 
-    expect(result.stderr).toContain("Width is missing argument.")
+    expect(result.stderr).toContain("Width is missing argument")
     expect(existsSync(`${sandbox}/converted`)).toBe(false);
 
     del.sync(sandbox);
@@ -24,7 +24,7 @@ describe("The convert-image with --width and --height options", () => {
 
     expect(result.code).toBe(1);
 
-    expect(result.stderr).toContain("Width is not a number.")
+    expect(result.stderr).toContain("Width is not a number")
     expect(existsSync(`${sandbox}/converted`)).toBe(false);
 
     del.sync(sandbox);
@@ -37,7 +37,7 @@ describe("The convert-image with --width and --height options", () => {
 
     expect(result.code).toBe(1);
 
-    expect(result.stderr).toContain("Height is missing argument.")
+    expect(result.stderr).toContain("Height is missing argument")
     expect(existsSync(`${sandbox}/converted`)).toBe(false);
 
     del.sync(sandbox);
@@ -50,7 +50,7 @@ describe("The convert-image with --width and --height options", () => {
 
     expect(result.code).toBe(1);
 
-    expect(result.stderr).toContain("Height is not a number.")
+    expect(result.stderr).toContain("Height is not a number")
     expect(existsSync(`${sandbox}/converted`)).toBe(false);
 
     del.sync(sandbox);

@@ -20,14 +20,14 @@ function convert(input_directory, { output, width, height, only, webp = false })
       if (output.includes(':\\')) _outputDirectory = output;
       else _outputDirectory = `${input_directory}/${output}`;
     } else if (output) {
-      throw new SyntaxError(`Output is missing argument.`);
+      throw new SyntaxError(`Output is missing argument`);
     }
 
     let _convertAll = true
     if (typeof only !== 'undefined' && only !== true) {
       _convertAll = false
     } else if (only) {
-      throw new SyntaxError(`Only is missing argument.`);
+      throw new SyntaxError(`Only is missing argument`);
     }
 
     let _imageWidth = handleDimension(width, 'Width');
@@ -76,7 +76,7 @@ function convert(input_directory, { output, width, height, only, webp = false })
       }
     });
     if (sharp.counters().process == 0 && sharp.counters().queue == 0) {
-      throw new Error(`No files to convert.`);
+      throw new Error(`No files to convert`);
     }
   } catch (error) {
     throw error;
@@ -90,10 +90,10 @@ function handleDimension(dim, type) {
     if (typeof dim !== 'undefined' && dim !== true) {
       _dim = parseInt(dim);
       if (isNaN(_dim)) {
-        throw new SyntaxError(`${type} is not a number.`);
+        throw new SyntaxError(`${type} is not a number`);
       }
     } else if (dim) {
-      throw new SyntaxError(`${type} is missing argument.`);
+      throw new SyntaxError(`${type} is missing argument`);
     }
     return _dim;
   } catch (error) {

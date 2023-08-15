@@ -10,7 +10,7 @@ describe("The convert-image with --output option", () => {
 
     expect(result.code).toBe(1);
 
-    expect(result.stderr).toContain("Missing required argument 'input_directory'.")
+    expect(result.stderr).toContain("Missing required argument 'input_directory'")
     expect(existsSync(`${sandbox}/converted`)).toBe(false);
 
     del.sync(sandbox);
@@ -23,7 +23,7 @@ describe("The convert-image with --output option", () => {
 
     expect(result.code).toBe(1);
 
-    expect(result.stderr).toContain("Output is missing argument.")
+    expect(result.stderr).toContain("Output is missing argument")
     expect(existsSync(`${sandbox}/converted`)).toBe(false);
 
     del.sync(sandbox);
@@ -35,7 +35,7 @@ describe("The convert-image with --output option", () => {
     let result = await cli([sandbox], '.');
 
     expect(result.code).toBe(1);
-    expect(result.stderr).toContain("No files to convert.")
+    expect(result.stderr).toContain("No files to convert")
     expect(existsSync(`${sandbox}/converted`)).toBe(true);
 
     del.sync(sandbox);
