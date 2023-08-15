@@ -2,6 +2,7 @@
 
 const { program } = require('commander');
 const { convert, toOutput, OutputType } = require('./commands/convert');
+const chalk = require('chalk');
 
 try {
   program
@@ -31,13 +32,20 @@ try {
       outputError: (str) => {
         throw new Error(str.trim())
       }
-    });
+    })
+    .addHelpText('before', `\x1B[34m\x1B[1m\x1B[90m`)
+    .addHelpText('after', `\x1B[39m\x1B[34m\x1B[22m\x1B[39m`);
 
   program.parse();
 } catch (error) {
-  if (error.message == `error: missing required argument 'input_directory'`)
-    toOutput(`Missing required argument 'input_directory'.`, OutputType.Error);
+  if (error.message.includes(`error: `)) {
+    let _err = error.message.split("error: ")[1].split('\n')
+    toOutput(_err[0].charAt(0).toUpperCase() + _err[0].slice(1), OutputType.Error);
+    if (_err[1]) toOutput(chalk.gray(`        ${_err[1]}`));
+  }
   else
     toOutput(`${error.message}`, OutputType.Error);
+
+  toOutput(chalk.gray('        (Add --help for additional information)'));
   process.exit(1);
 }
