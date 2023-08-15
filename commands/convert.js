@@ -15,10 +15,10 @@ function convert(input_directory, { output, width, height, only, webp = false })
   try {
     if (!input_directory.includes(':\\')) input_directory = `${process.cwd()}\\${input_directory}`;
 
-    let _outputDirectory = `${input_directory}\\converted`;
+    let _outputDirectory = `${input_directory}/converted`;
     if (typeof output !== 'undefined' && output !== true) {
       if (output.includes(':\\')) _outputDirectory = output;
-      else _outputDirectory = `${input_directory}\\${output}`;
+      else _outputDirectory = `${input_directory}/${output}`;
     } else if (output) {
       throw new SyntaxError(`Output is missing argument.`);
     }
