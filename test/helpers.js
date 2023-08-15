@@ -52,7 +52,7 @@ function writeImage(sandbox, img, ext, file_name = 'test_image') {
   //https://stackoverflow.com/questions/43487543/writing-binary-data-using-node-js-fs-writefile-to-create-an-image-file
   var data = img.replace(/^data:image\/\w+;base64,/, "");
   var buf = Buffer.from(data, 'base64');
-  writeFile(`${sandbox}/${file_name}.${ext}`, buf, function (err) {
+  writeFile(`${path.join(sandbox, file_name)}.${ext}`, buf, function (err) {
     if (err) throw err;
   });
   return `${file_name}.${ext}`
@@ -65,7 +65,7 @@ function createTestFiles(sandbox) {
     if (index % 2 == 0)
       filenames.push(writeImage(sandbox, createImage(`Test image ${index}`), 'jpg', `test_image_${index}`))
     else if (index % 3 == 0) {
-      mkdirp.mkdirp(`${sandbox}/folder_${index}`)
+      mkdirp.mkdirp(path.join(sandbox, `folder_${index}`))
       foldernames.push(`folder_${index}`)
     }
     else

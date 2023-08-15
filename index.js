@@ -3,6 +3,7 @@
 const { program } = require('commander');
 const { convert, toOutput, OutputType } = require('./commands/convert');
 const chalk = require('chalk');
+const path = require("path");
 
 try {
   program
@@ -13,7 +14,7 @@ try {
     .argument('<input_directory>', 'the input directory')
     .option(
       '--output [output]',
-      'the output directory. If not specified, it will be input_directory/converted.'
+      `the output directory. If not specified, it will be ${path.join('input_directory', 'converted')}.`
     )
     .option(
       '--width [width]',
