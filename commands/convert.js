@@ -1,6 +1,8 @@
 const chalk = require('chalk');
 const sharp = require('sharp');
 const fs = require('fs');
+const path = require("path");
+
 const OutputType = Object.freeze({
   Success: 'success',
   Info: 'info',
@@ -13,12 +15,12 @@ const NewLine = Object.freeze({
 
 function convert(input_directory, { output, width, height, only, webp = false }) {
   try {
-    if (!input_directory.includes(':\\')) input_directory = `${process.cwd()}/${input_directory}`;
+    if (!input_directory.includes(':\\')) input_directory = `${path.join(process.cwd(), input_directory)}`;
 
-    let _outputDirectory = `${input_directory}/converted`;
+    let _outputDirectory = `${path.join(input_directory, 'converted')}`;
     if (typeof output !== 'undefined' && output !== true) {
-      if (output.includes(':\\')) _outputDirectory = output;
-      else _outputDirectory = `${input_directory}/${output}`;
+      if (output.includes(':\\') || output.startsWith('/')) _outputDirectory = output;
+      else _outputDirectory = `${path.join(input_directory, output)}`;
     } else if (output) {
       throw new SyntaxError(`Output is missing argument`);
     }
@@ -34,8 +36,13 @@ function convert(input_directory, { output, width, height, only, webp = false })
     let _imageHeight = handleDimension(height, 'Height');
 
     // Creates the output folder if it does not exists
-    if (!fs.existsSync(_outputDirectory)) {
-      fs.mkdirSync(_outputDirectory);
+    try {
+      if (!fs.existsSync(_outputDirectory)) {
+        fs.mkdirSync(_outputDirectory);
+      }
+    } catch (error) {
+      if (error.message.includes('no such file or directory'))
+        throw new Error(`No such file or directory '${path.join(path.dirname(input_directory), path.basename(input_directory))}'`)
     }
 
     let _convertedCount = 0;
@@ -44,18 +51,18 @@ function convert(input_directory, { output, width, height, only, webp = false })
 
     // Converts jpg and png files to webp and optionally resizes them
     _inputFiles.forEach((file) => {
-      const _filePath = `${input_directory}/${file}`;
+      const _filePath = `${path.join(input_directory, file)}`;
       const _isFileADirectory = fs.lstatSync(_filePath).isDirectory();
       if (!_isFileADirectory && (file.includes('.jpg') || file.includes('.png'))) {
         if (_convertAll || only.includes(file)) {
           _convertedCount++;
-          const converting = sharp(`${input_directory}/${file}`).rotate();
+          const converting = sharp(`${path.join(input_directory, file)}`).rotate();
           if (webp)
             converting
               .webp()
               .resize(_imageWidth, _imageHeight)
-              .toFile(`${_outputDirectory}/${file.replace('.jpg', '').replace('.png', '')}.webp`);
-          else converting.resize(_imageWidth, _imageHeight).toFile(`${_outputDirectory}/${file}`);
+              .toFile(`${path.join(_outputDirectory, file.replace('.jpg', '').replace('.png', ''))}.webp`);
+          else converting.resize(_imageWidth, _imageHeight).toFile(`${path.join(_outputDirectory, file)}`);
         }
       }
     });

@@ -2,6 +2,7 @@ const del = require("del");
 const { existsSync } = require("fs");
 const sizeOf = require('image-size')
 const { cli, tmp, createTestFiles } = require('./helpers');
+const path = require("path");
 
 describe("The convert-image with --width and --height options", () => {
   it("should show error when --width arg missing", async () => {
@@ -12,7 +13,7 @@ describe("The convert-image with --width and --height options", () => {
     expect(result.code).toBe(1);
 
     expect(result.stderr).toContain("Width is missing argument")
-    expect(existsSync(`${sandbox}/converted`)).toBe(false);
+    expect(existsSync(`${path.join(sandbox, 'converted')}`)).toBe(false);
 
     del.sync(sandbox);
   });
@@ -25,7 +26,7 @@ describe("The convert-image with --width and --height options", () => {
     expect(result.code).toBe(1);
 
     expect(result.stderr).toContain("Width is not a number")
-    expect(existsSync(`${sandbox}/converted`)).toBe(false);
+    expect(existsSync(`${path.join(sandbox, 'converted')}`)).toBe(false);
 
     del.sync(sandbox);
   });
@@ -38,7 +39,7 @@ describe("The convert-image with --width and --height options", () => {
     expect(result.code).toBe(1);
 
     expect(result.stderr).toContain("Height is missing argument")
-    expect(existsSync(`${sandbox}/converted`)).toBe(false);
+    expect(existsSync(`${path.join(sandbox, 'converted')}`)).toBe(false);
 
     del.sync(sandbox);
   });
@@ -51,7 +52,7 @@ describe("The convert-image with --width and --height options", () => {
     expect(result.code).toBe(1);
 
     expect(result.stderr).toContain("Height is not a number")
-    expect(existsSync(`${sandbox}/converted`)).toBe(false);
+    expect(existsSync(`${path.join(sandbox, 'converted')}`)).toBe(false);
 
     del.sync(sandbox);
   });
@@ -63,16 +64,16 @@ describe("The convert-image with --width and --height options", () => {
     let result = await cli([sandbox, '--output', 'test_folder', "-w", "--width", "300"], '.');
 
     expect(result.code).toBe(0);
-    expect(existsSync(`${sandbox}/test_folder`)).toBe(true);
+    expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);
     filenames.forEach(element => {
-      let _filename = `${sandbox}/test_folder/${element.split('.')[0]}.webp`
+      let _filename = `${path.join(sandbox, 'test_folder', element.split('.')[0])}.webp`
       let dimensions = sizeOf(_filename)
 
       expect(existsSync(_filename)).toBe(true);
       expect(dimensions.width).toBe(300);
     });
     foldernames.forEach(element => {
-      expect(existsSync(`${sandbox}/test_folder/${element}`)).toBe(false);
+      expect(existsSync(`${path.join(sandbox, 'test_folder', element)}`)).toBe(false);
     });
     expect(result.stdout).toContain('Files converted: 8')
 
@@ -86,16 +87,16 @@ describe("The convert-image with --width and --height options", () => {
     let result = await cli([sandbox, '--output', 'test_folder', "-w", "--height", "300"], '.');
 
     expect(result.code).toBe(0);
-    expect(existsSync(`${sandbox}/test_folder`)).toBe(true);
+    expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);
     filenames.forEach(element => {
-      let _filename = `${sandbox}/test_folder/${element.split('.')[0]}.webp`
+      let _filename = `${path.join(sandbox, 'test_folder', element.split('.')[0])}.webp`
       let dimensions = sizeOf(_filename)
 
       expect(existsSync(_filename)).toBe(true);
       expect(dimensions.height).toBe(300);
     });
     foldernames.forEach(element => {
-      expect(existsSync(`${sandbox}/test_folder/${element}`)).toBe(false);
+      expect(existsSync(`${path.join(sandbox, 'test_folder', element)}`)).toBe(false);
     });
     expect(result.stdout).toContain('Files converted: 8')
 
@@ -109,9 +110,9 @@ describe("The convert-image with --width and --height options", () => {
     let result = await cli([sandbox, '--output', 'test_folder', "-w", "--width", "200", "--height", "300"], '.');
 
     expect(result.code).toBe(0);
-    expect(existsSync(`${sandbox}/test_folder`)).toBe(true);
+    expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);
     filenames.forEach(element => {
-      let _filename = `${sandbox}/test_folder/${element.split('.')[0]}.webp`
+      let _filename = `${path.join(sandbox, 'test_folder', element.split('.')[0])}.webp`
       let dimensions = sizeOf(_filename)
 
       expect(existsSync(_filename)).toBe(true);
@@ -119,7 +120,7 @@ describe("The convert-image with --width and --height options", () => {
       expect(dimensions.height).toBe(300);
     });
     foldernames.forEach(element => {
-      expect(existsSync(`${sandbox}/test_folder/${element}`)).toBe(false);
+      expect(existsSync(`$${path.join(sandbox, 'test_folder', element)}`)).toBe(false);
     });
     expect(result.stdout).toContain('Files converted: 8')
 

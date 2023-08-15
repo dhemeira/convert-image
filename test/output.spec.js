@@ -1,6 +1,7 @@
 const del = require("del");
 const { existsSync } = require("fs");
 const { cli, tmp, createTestFiles } = require('./helpers');
+const path = require("path");
 
 describe("The convert-image with --output option", () => {
   it("should show error when <input_directory> arg missing", async () => {
@@ -11,7 +12,7 @@ describe("The convert-image with --output option", () => {
     expect(result.code).toBe(1);
 
     expect(result.stderr).toContain("Missing required argument 'input_directory'")
-    expect(existsSync(`${sandbox}/converted`)).toBe(false);
+    expect(existsSync(`${path.join(sandbox, 'converted')}`)).toBe(false);
 
     del.sync(sandbox);
   });
@@ -24,7 +25,7 @@ describe("The convert-image with --output option", () => {
     expect(result.code).toBe(1);
 
     expect(result.stderr).toContain("Output is missing argument")
-    expect(existsSync(`${sandbox}/converted`)).toBe(false);
+    expect(existsSync(`${path.join(sandbox, 'converted')}`)).toBe(false);
 
     del.sync(sandbox);
   });
@@ -36,7 +37,7 @@ describe("The convert-image with --output option", () => {
 
     expect(result.code).toBe(1);
     expect(result.stderr).toContain("No files to convert")
-    expect(existsSync(`${sandbox}/converted`)).toBe(true);
+    expect(existsSync(`${path.join(sandbox, 'converted')}`)).toBe(true);
 
     del.sync(sandbox);
   });
@@ -48,12 +49,12 @@ describe("The convert-image with --output option", () => {
     let result = await cli([sandbox], '.');
 
     expect(result.code).toBe(0);
-    expect(existsSync(`${sandbox}/converted`)).toBe(true);
+    expect(existsSync(`${path.join(sandbox, 'converted')}`)).toBe(true);
     filenames.forEach(element => {
-      expect(existsSync(`${sandbox}/converted/${element}`)).toBe(true);
+      expect(existsSync(`${path.join(sandbox, 'converted', element)}`)).toBe(true);
     });
     foldernames.forEach(element => {
-      expect(existsSync(`${sandbox}/converted/${element}`)).toBe(false);
+      expect(existsSync(`${path.join(sandbox, 'converted', element)}`)).toBe(false);
     });
     expect(result.stdout).toContain('Files converted: 8')
 
@@ -67,12 +68,12 @@ describe("The convert-image with --output option", () => {
     let result = await cli([sandbox, '--output', 'test_folder'], '.');
 
     expect(result.code).toBe(0);
-    expect(existsSync(`${sandbox}/test_folder`)).toBe(true);
+    expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);
     filenames.forEach(element => {
-      expect(existsSync(`${sandbox}/test_folder/${element}`)).toBe(true);
+      expect(existsSync(`${path.join(sandbox, 'test_folder', element)}`)).toBe(true);
     });
     foldernames.forEach(element => {
-      expect(existsSync(`${sandbox}/test_folder/${element}`)).toBe(false);
+      expect(existsSync(`${path.join(sandbox, 'test_folder', element)}`)).toBe(false);
     });
     expect(result.stdout).toContain('Files converted: 8')
 
