@@ -12,7 +12,7 @@ try {
     .argument('<input_directory>', 'the input directory')
     .option(
       '--output [output]',
-      'the output directory. If not specified, it will be input_directory\\converted.'
+      'the output directory. If not specified, it will be input_directory/converted.'
     )
     .option(
       '--width [width]',
@@ -39,4 +39,5 @@ try {
     toOutput(`Missing required argument 'input_directory'.`, OutputType.Error);
   else
     toOutput(`${error.message}`, OutputType.Error);
+  process.exit(1);
 }
