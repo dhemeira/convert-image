@@ -4,7 +4,7 @@
   "description": "An npm package to mass convert .jpg and .png files to .webp or resize them.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "test": "jest",
     "format": "prettier --write .",
     "commit": "cz"
   },
@@ -26,8 +26,14 @@
     "sharp": "^0.32.4"
   },
   "devDependencies": {
-    "prettier": "^3.0.1",
-    "commitizen": "^4.3.0"
+    "del": "^5.1.0",
+    "image-size": "^1.0.2",
+    "mkdirp": "^3.0.1",
+    "uuid": "^9.0.0",
+    "canvas": "^2.11.2",
+    "commitizen": "^4.3.0",
+    "jest": "^29.6.2",
+    "prettier": "^3.0.1"
   },
   "repository": {
     "type": "git",
