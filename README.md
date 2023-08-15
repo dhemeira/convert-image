@@ -3,6 +3,11 @@
 This is a package for converting `.jpg` and `.png` files to `.webp` and/or to resize them to a given width and/or height.
 The results are placed inside the specified folder.
 
+[![npm](https://img.shields.io/npm/dw/%40dhemeira/convert-image?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@dhemeira/convert-image)
+[![GitHub Repo stars](https://img.shields.io/github/stars/dhemeira/convert-image?style=for-the-badge&logo=github&color=yellow)](https://github.com/dhemeira/convert-image/stargazers)
+[![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/dhemeira/convert-image?style=for-the-badge&logo=github&label=latest%20release)](https://github.com/dhemeira/convert-image/releases/latest)
+[![npm (scoped)](https://img.shields.io/npm/v/%40dhemeira/convert-image?style=for-the-badge&logo=npm&label=npm%20version&color=red)](https://www.npmjs.com/package/@dhemeira/convert-image?activeTab=versions)
+
 ## Usage:
 
 Choose one of the following 3:
