@@ -10,7 +10,7 @@ describe("The convert-image with --only option", () => {
 
     expect(result.code).toBe(1);
 
-    expect(result.stderr).toContain("Only is missing argument.")
+    expect(result.stderr).toContain("Only is missing argument")
     expect(existsSync(`${sandbox}/converted`)).toBe(false);
 
     del.sync(sandbox);
