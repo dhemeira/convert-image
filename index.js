@@ -12,7 +12,7 @@ try {
     .argument('<input_directory>', 'the input directory')
     .option(
       '--output [output]',
-      'the output directory. If not specified, it will be input_directory\\converted.'
+      'the output directory. If not specified, it will be input_directory/converted.'
     )
     .option(
       '--width [width]',

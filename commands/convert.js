@@ -13,7 +13,7 @@ const NewLine = Object.freeze({
 
 function convert(input_directory, { output, width, height, only, webp = false }) {
   try {
-    if (!input_directory.includes(':\\')) input_directory = `${process.cwd()}\\${input_directory}`;
+    if (!input_directory.includes(':\\')) input_directory = `${process.cwd()}/${input_directory}`;
 
     let _outputDirectory = `${input_directory}/converted`;
     if (typeof output !== 'undefined' && output !== true) {
