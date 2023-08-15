@@ -16,9 +16,11 @@ function convert(input_directory, { output, width, height, only, webp = false })
     if (!input_directory.includes(':\\')) input_directory = `${process.cwd()}\\${input_directory}`;
 
     let _outputDirectory = `${input_directory}\\converted`;
-    if (output) {
+    if (typeof output !== 'undefined' && output !== true) {
       if (output.includes(':\\')) _outputDirectory = output;
       else _outputDirectory = `${input_directory}\\${output}`;
+    } else if (output) {
+      throw new SyntaxError(`Output is missing argument.`);
     }
 
     let _convertAll = true
@@ -73,6 +75,9 @@ function convert(input_directory, { output, width, height, only, webp = false })
         toOutput(`Files converted: ${_convertedCount}`, OutputType.Success, 'before');
       }
     });
+    if (sharp.counters().process == 0 && sharp.counters().queue == 0) {
+      throw new Error(`No files to convert.`);
+    }
   } catch (error) {
     throw error;
   }

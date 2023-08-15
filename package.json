@@ -1,6 +1,6 @@
 {
   "name": "@dhemeira/convert-image",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "An npm package to mass convert .jpg and .png files to .webp or resize them.",
   "main": "index.js",
   "scripts": {

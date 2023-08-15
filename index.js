@@ -39,4 +39,5 @@ try {
     toOutput(`Missing required argument 'input_directory'.`, OutputType.Error);
   else
     toOutput(`${error.message}`, OutputType.Error);
+  process.exit(1);
 }
