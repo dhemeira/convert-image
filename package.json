@@ -1,13 +1,13 @@
 {
   "name": "@dhemeira/convert-image",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "An npm package to mass convert .jpg and .png files to .webp or resize them.",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "format": "prettier --write .",
     "commit-only": "cz",
-    "commit": "run-s test commit-only"
+    "commit": "run-s format test commit-only"
   },
   "bin": {
     "convert-image": "index.js"
