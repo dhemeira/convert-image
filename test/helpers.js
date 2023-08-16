@@ -4,7 +4,7 @@ const uuid = require('uuid').v4;
 const mkdirp = require('mkdirp');
 const { writeFile } = require("fs");
 
-const SANDBOX = "./sandbox/";
+const SANDBOX = path.resolve("./test/sandbox/");
 
 function cli(args, cwd) {
   return new Promise(resolve => {

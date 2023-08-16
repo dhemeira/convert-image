@@ -7,7 +7,7 @@ describe("The convert-image with --only option", () => {
   it("should show error when --only arg missing", async () => {
     const sandbox = await tmp();
 
-    let result = await cli([sandbox, "--only"], '.');
+    let result = await cli([sandbox, "--only"], sandbox);
 
     expect(result.code).toBe(1);
 
@@ -21,7 +21,7 @@ describe("The convert-image with --only option", () => {
     const sandbox = await tmp();
     let foldernames = createTestFiles(sandbox)[1]
 
-    let result = await cli([sandbox, '--output', 'test_folder', "-w", "--width", "1", "--height", "1", "--only", "test_image_0.jpg"], '.');
+    let result = await cli([sandbox, '--output', 'test_folder', "-w", "--width", "1", "--height", "1", "--only", "test_image_0.jpg"], sandbox);
 
     expect(result.code).toBe(0);
     expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);
@@ -38,7 +38,7 @@ describe("The convert-image with --only option", () => {
     const sandbox = await tmp();
     let foldernames = createTestFiles(sandbox)[1]
 
-    let result = await cli([sandbox, '--output', 'test_folder', "-w", "--width", "1", "--height", "1", "--only", "test_image_0.jpg", "test_image_1.png"], '.');
+    let result = await cli([sandbox, '--output', 'test_folder', "-w", "--width", "1", "--height", "1", "--only", "test_image_0.jpg", "test_image_1.png"], sandbox);
 
     expect(result.code).toBe(0);
     expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);

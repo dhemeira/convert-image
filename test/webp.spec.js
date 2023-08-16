@@ -8,7 +8,7 @@ describe("The convert-image with --webp option", () => {
     const sandbox = await tmp();
     let [filenames, foldernames] = createTestFiles(sandbox)
 
-    let result = await cli([sandbox, '--output', 'test_folder', "-w"], '.');
+    let result = await cli([sandbox, '--output', 'test_folder', "-w"], sandbox);
 
     expect(result.code).toBe(0);
     expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);

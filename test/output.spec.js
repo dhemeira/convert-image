@@ -7,7 +7,7 @@ describe("The convert-image with --output option", () => {
   it("should show error when <input_directory> arg missing", async () => {
     const sandbox = await tmp();
 
-    let result = await cli([], '.');
+    let result = await cli([], sandbox);
 
     expect(result.code).toBe(1);
 
@@ -20,7 +20,7 @@ describe("The convert-image with --output option", () => {
   it("should show error when --output arg missing", async () => {
     const sandbox = await tmp();
 
-    let result = await cli([sandbox, "--output"], '.');
+    let result = await cli([sandbox, "--output"], sandbox);
 
     expect(result.code).toBe(1);
 
@@ -33,7 +33,7 @@ describe("The convert-image with --output option", () => {
   it("should show no files to convert error", async () => {
     const sandbox = await tmp();
 
-    let result = await cli([sandbox], '.');
+    let result = await cli([sandbox], sandbox);
 
     expect(result.code).toBe(1);
     expect(result.stderr).toContain("No files to convert")
@@ -46,7 +46,7 @@ describe("The convert-image with --output option", () => {
     const sandbox = await tmp();
     let [filenames, foldernames] = createTestFiles(sandbox)
 
-    let result = await cli([sandbox], '.');
+    let result = await cli([sandbox], sandbox);
 
     expect(result.code).toBe(0);
     expect(existsSync(`${path.join(sandbox, 'converted')}`)).toBe(true);
@@ -65,7 +65,7 @@ describe("The convert-image with --output option", () => {
     const sandbox = await tmp();
     let [filenames, foldernames] = createTestFiles(sandbox)
 
-    let result = await cli([sandbox, '--output', 'test_folder'], '.');
+    let result = await cli([sandbox, '--output', 'test_folder'], sandbox);
 
     expect(result.code).toBe(0);
     expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);

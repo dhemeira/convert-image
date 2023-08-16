@@ -8,7 +8,7 @@ describe("The convert-image with --width and --height options", () => {
   it("should show error when --width arg missing", async () => {
     const sandbox = await tmp();
 
-    let result = await cli([sandbox, "--width"], '.');
+    let result = await cli([sandbox, "--width"], sandbox);
 
     expect(result.code).toBe(1);
 
@@ -21,7 +21,7 @@ describe("The convert-image with --width and --height options", () => {
   it("should show error when --width is not a number", async () => {
     const sandbox = await tmp();
 
-    let result = await cli([sandbox, "--width", "test"], '.');
+    let result = await cli([sandbox, "--width", "test"], sandbox);
 
     expect(result.code).toBe(1);
 
@@ -34,7 +34,7 @@ describe("The convert-image with --width and --height options", () => {
   it("should show error when --height arg missing", async () => {
     const sandbox = await tmp();
 
-    let result = await cli([sandbox, "--height"], '.');
+    let result = await cli([sandbox, "--height"], sandbox);
 
     expect(result.code).toBe(1);
 
@@ -47,7 +47,7 @@ describe("The convert-image with --width and --height options", () => {
   it("should show error when --height is not a number", async () => {
     const sandbox = await tmp();
 
-    let result = await cli([sandbox, "--height", "test"], '.');
+    let result = await cli([sandbox, "--height", "test"], sandbox);
 
     expect(result.code).toBe(1);
 
@@ -61,7 +61,7 @@ describe("The convert-image with --width and --height options", () => {
     const sandbox = await tmp();
     let [filenames, foldernames] = createTestFiles(sandbox)
 
-    let result = await cli([sandbox, '--output', 'test_folder', "-w", "--width", "300"], '.');
+    let result = await cli([sandbox, '--output', 'test_folder', "-w", "--width", "300"], sandbox);
 
     expect(result.code).toBe(0);
     expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);
@@ -84,7 +84,7 @@ describe("The convert-image with --width and --height options", () => {
     const sandbox = await tmp();
     let [filenames, foldernames] = createTestFiles(sandbox)
 
-    let result = await cli([sandbox, '--output', 'test_folder', "-w", "--height", "300"], '.');
+    let result = await cli([sandbox, '--output', 'test_folder', "-w", "--height", "300"], sandbox);
 
     expect(result.code).toBe(0);
     expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);
@@ -107,7 +107,7 @@ describe("The convert-image with --width and --height options", () => {
     const sandbox = await tmp();
     let [filenames, foldernames] = createTestFiles(sandbox)
 
-    let result = await cli([sandbox, '--output', 'test_folder', "-w", "--width", "200", "--height", "300"], '.');
+    let result = await cli([sandbox, '--output', 'test_folder', "-w", "--width", "200", "--height", "300"], sandbox);
 
     expect(result.code).toBe(0);
     expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);
