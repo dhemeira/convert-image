@@ -1,9 +1,10 @@
 #! /usr/bin/env node
 
 const { program } = require('commander');
-const { convert, toOutput, OutputType, NewLine } = require('./commands/convert');
+const { convert } = require('./commands/convert');
+const { printToOutput, OutputType, NewLine } = require('./functions/printToConsole');
 const chalk = require('chalk');
-const path = require("path");
+const path = require('path');
 
 try {
   program
@@ -14,7 +15,10 @@ try {
     .argument('<input_directory>', 'the input directory')
     .option(
       '--output [output]',
-      `the output directory. If not specified, it will be ${path.join('input_directory', 'converted')}.`
+      `the output directory. If not specified, it will be ${path.join(
+        'input_directory',
+        'converted'
+      )}.`
     )
     .option(
       '--width [width]',
@@ -24,15 +28,17 @@ try {
       '--height [height]',
       'resize the image to this height. If not specificed, the height will be the original height.'
     )
+    .option('--only [files...]', 'convert only these files.')
     .option(
-      '--only [files...]',
-      'convert only these files.'
+      '--fit [fit]',
+      'how the image should be resized/cropped to fit the target dimension(s), one of cover, contain or fill.'
     )
     .option('-w, --webp', 'convert the image to .webp extension.')
-    .action(convert).configureOutput({
+    .action(convert)
+    .configureOutput({
       outputError: (str) => {
-        throw new Error(str.trim())
-      }
+        throw new Error(str.trim());
+      },
     })
     .addHelpText('before', `\x1B[34m\x1B[1m\x1B[90m`)
     .addHelpText('after', `\x1B[39m\x1B[34m\x1B[22m\x1B[39m`);
@@ -40,13 +46,11 @@ try {
   program.parse();
 } catch (error) {
   if (error.message.includes(`error: `)) {
-    let _err = error.message.split("error: ")[1].split('\n')
-    toOutput(_err[0].charAt(0).toUpperCase() + _err[0].slice(1), OutputType.Error);
-    if (_err[1]) toOutput(chalk.gray(`        ${_err[1]}`));
-  }
-  else
-    toOutput(`${error.message}`, OutputType.Error);
+    let _err = error.message.split('error: ')[1].split('\n');
+    printToOutput(_err[0].charAt(0).toUpperCase() + _err[0].slice(1), OutputType.Error);
+    if (_err[1]) printToOutput(chalk.gray(`        ${_err[1]}`));
+  } else printToOutput(`${error.message}`, OutputType.Error);
 
-  toOutput(chalk.gray('        (Add --help for additional information)'), null, NewLine.After);
+  printToOutput(chalk.gray('        (Add --help for additional information)'), null, NewLine.After);
   process.exit(1);
 }
