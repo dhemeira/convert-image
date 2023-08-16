@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const { program } = require('commander');
-const { convert, toOutput, OutputType } = require('./commands/convert');
+const { convert, toOutput, OutputType, NewLine } = require('./commands/convert');
 const chalk = require('chalk');
 const path = require("path");
 
@@ -47,6 +47,6 @@ try {
   else
     toOutput(`${error.message}`, OutputType.Error);
 
-  toOutput(chalk.gray('        (Add --help for additional information)'));
+  toOutput(chalk.gray('        (Add --help for additional information)'), null, NewLine.After);
   process.exit(1);
 }

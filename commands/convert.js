@@ -15,15 +15,13 @@ const NewLine = Object.freeze({
 
 function convert(input_directory, { output, width, height, only, webp = false }) {
   try {
-    if (!input_directory.includes(':\\')) input_directory = `${path.join(process.cwd(), input_directory)}`;
+    input_directory = path.resolve(input_directory)
 
     let _outputDirectory = `${path.join(input_directory, 'converted')}`;
-    if (typeof output !== 'undefined' && output !== true) {
-      if (output.includes(':\\') || output.startsWith('/')) _outputDirectory = output;
-      else _outputDirectory = `${path.join(input_directory, output)}`;
-    } else if (output) {
+    if (typeof output !== 'undefined' && output !== true)
+      _outputDirectory = path.resolve(output)
+    else if (output)
       throw new SyntaxError(`Output is missing argument`);
-    }
 
     let _convertAll = true
     if (typeof only !== 'undefined' && only !== true) {
@@ -79,7 +77,7 @@ function convert(input_directory, { output, width, height, only, webp = false })
 
       if (_sharpCounter.process == 0 && _sharpCounter.queue == 0) {
         printPercent(100, 101);
-        toOutput(`Files converted: ${_convertedCount}`, OutputType.Success, 'before');
+        toOutput(`Files converted: ${_convertedCount}\n`, OutputType.Success, NewLine.Before);
       }
     });
     if (sharp.counters().process == 0 && sharp.counters().queue == 0) {
