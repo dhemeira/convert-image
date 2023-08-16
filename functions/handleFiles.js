@@ -11,7 +11,8 @@ function fileConverter(
   webp,
   imageWidth,
   imageHeight,
-  outputDirectory
+  outputDirectory,
+  fit
 ) {
   let convertedCount = 0;
   inputFiles.forEach((file) => {
@@ -20,16 +21,16 @@ function fileConverter(
     if (!isFileADirectory && isSupportedFormat(file)) {
       if (!isOptionHasValue(only) || only.includes(file)) {
         convertedCount++;
-        const converting = sharp(`${path.join(inputDirectory, file)}`).rotate();
+        const converting = sharp(`${path.join(inputDirectory, file)}`)
+          .rotate()
+          .resize(imageWidth, imageHeight, { fit });
         if (webp)
           converting
             .webp()
-            .resize(imageWidth, imageHeight)
             .toFile(
               `${path.join(outputDirectory, file.replace('.jpg', '').replace('.png', ''))}.webp`
             );
-        else
-          converting.resize(imageWidth, imageHeight).toFile(`${path.join(outputDirectory, file)}`);
+        else converting.toFile(`${path.join(outputDirectory, file)}`);
       }
     }
   });

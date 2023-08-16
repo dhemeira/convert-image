@@ -57,58 +57,12 @@ describe('The convert-image with --width and --height options', () => {
     del.sync(sandbox);
   });
 
-  it('should set image width to 300', async () => {
-    const sandbox = await tmp();
-    let [filenames, foldernames] = createTestFiles(sandbox);
-
-    let result = await cli([sandbox, '--output', 'test_folder', '-w', '--width', '300'], sandbox);
-
-    expect(result.code).toBe(0);
-    expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);
-    filenames.forEach((element) => {
-      let _filename = `${path.join(sandbox, 'test_folder', element.split('.')[0])}.webp`;
-      let dimensions = sizeOf(_filename);
-
-      expect(existsSync(_filename)).toBe(true);
-      expect(dimensions.width).toBe(300);
-    });
-    foldernames.forEach((element) => {
-      expect(existsSync(`${path.join(sandbox, 'test_folder', element)}`)).toBe(false);
-    });
-    expect(result.stdout).toContain('Files converted: 8');
-
-    del.sync(sandbox);
-  });
-
-  it('should set image height to 300', async () => {
-    const sandbox = await tmp();
-    let [filenames, foldernames] = createTestFiles(sandbox);
-
-    let result = await cli([sandbox, '--output', 'test_folder', '-w', '--height', '300'], sandbox);
-
-    expect(result.code).toBe(0);
-    expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);
-    filenames.forEach((element) => {
-      let _filename = `${path.join(sandbox, 'test_folder', element.split('.')[0])}.webp`;
-      let dimensions = sizeOf(_filename);
-
-      expect(existsSync(_filename)).toBe(true);
-      expect(dimensions.height).toBe(300);
-    });
-    foldernames.forEach((element) => {
-      expect(existsSync(`${path.join(sandbox, 'test_folder', element)}`)).toBe(false);
-    });
-    expect(result.stdout).toContain('Files converted: 8');
-
-    del.sync(sandbox);
-  });
-
-  it('should set image width to 200 and height to 300', async () => {
+  it('should set image width to 30', async () => {
     const sandbox = await tmp();
     let [filenames, foldernames] = createTestFiles(sandbox);
 
     let result = await cli(
-      [sandbox, '--output', 'test_folder', '-w', '--width', '200', '--height', '300'],
+      [sandbox, '--output', 'test_folder', '-w', '--width', '30', '--height', '1'],
       sandbox
     );
 
@@ -119,8 +73,60 @@ describe('The convert-image with --width and --height options', () => {
       let dimensions = sizeOf(_filename);
 
       expect(existsSync(_filename)).toBe(true);
-      expect(dimensions.width).toBe(200);
-      expect(dimensions.height).toBe(300);
+      expect(dimensions.width).toBe(30);
+    });
+    foldernames.forEach((element) => {
+      expect(existsSync(`${path.join(sandbox, 'test_folder', element)}`)).toBe(false);
+    });
+    expect(result.stdout).toContain('Files converted: 8');
+
+    del.sync(sandbox);
+  });
+
+  it('should set image height to 30', async () => {
+    const sandbox = await tmp();
+    let [filenames, foldernames] = createTestFiles(sandbox);
+
+    let result = await cli(
+      [sandbox, '--output', 'test_folder', '-w', '--height', '30', '--width', '1'],
+      sandbox
+    );
+
+    expect(result.code).toBe(0);
+    expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);
+    filenames.forEach((element) => {
+      let _filename = `${path.join(sandbox, 'test_folder', element.split('.')[0])}.webp`;
+      let dimensions = sizeOf(_filename);
+
+      expect(existsSync(_filename)).toBe(true);
+      expect(dimensions.height).toBe(30);
+    });
+    foldernames.forEach((element) => {
+      expect(existsSync(`${path.join(sandbox, 'test_folder', element)}`)).toBe(false);
+    });
+    expect(result.stdout).toContain('Files converted: 8');
+
+    del.sync(sandbox);
+  });
+
+  it('should set image width to 20 and height to 30', async () => {
+    const sandbox = await tmp();
+    let [filenames, foldernames] = createTestFiles(sandbox);
+
+    let result = await cli(
+      [sandbox, '--output', 'test_folder', '-w', '--width', '20', '--height', '30'],
+      sandbox
+    );
+
+    expect(result.code).toBe(0);
+    expect(existsSync(`${path.join(sandbox, 'test_folder')}`)).toBe(true);
+    filenames.forEach((element) => {
+      let _filename = `${path.join(sandbox, 'test_folder', element.split('.')[0])}.webp`;
+      let dimensions = sizeOf(_filename);
+
+      expect(existsSync(_filename)).toBe(true);
+      expect(dimensions.width).toBe(20);
+      expect(dimensions.height).toBe(30);
     });
     foldernames.forEach((element) => {
       expect(existsSync(`$${path.join(sandbox, 'test_folder', element)}`)).toBe(false);

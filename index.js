@@ -29,6 +29,10 @@ try {
       'resize the image to this height. If not specificed, the height will be the original height.'
     )
     .option('--only [files...]', 'convert only these files.')
+    .option(
+      '--fit [fit]',
+      'how the image should be resized/cropped to fit the target dimension(s), one of cover, contain or fill.'
+    )
     .option('-w, --webp', 'convert the image to .webp extension.')
     .action(convert)
     .configureOutput({

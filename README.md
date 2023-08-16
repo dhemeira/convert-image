@@ -76,10 +76,11 @@ Arguments:
   input_directory    the input directory
 
 Options:
-  --output [output]  the output directory. If not specified, it will be input_directory/converted.
+  --output [output]  the output directory. If not specified, it will be input_directory\converted.
   --width [width]    resize the image to this width. If not specificed, the width will be the original width.
   --height [height]  resize the image to this height. If not specificed, the height will be the original height.
   --only [files...]  convert only these files.
+  --fit [fit]        how the image should be resized/cropped to fit the target dimension(s), one of cover, contain or fill.
   -w, --webp         convert the image to .webp extension.
   -h, --help         display help for command
 ```

@@ -13,7 +13,7 @@ const {
   listenToQueueChange,
 } = require('../functions/handleFiles');
 
-function convert(input_directory, { output, width, height, only, webp = false }) {
+function convert(input_directory, { output, width, height, only, fit, webp = false }) {
   try {
     let inputDirectory = path.resolve(input_directory);
     let outputDirectory = `${path.join(inputDirectory, 'converted')}`;
@@ -22,6 +22,12 @@ function convert(input_directory, { output, width, height, only, webp = false })
     else if (isOptionMissingValue(output)) throw new SyntaxError(`Output is missing argument`);
 
     if (isOptionMissingValue(only)) throw new SyntaxError(`Only is missing argument`);
+
+    if (isOptionMissingValue(fit)) throw new SyntaxError(`Fit is missing argument`);
+    else if (isOptionHasValue(fit)) {
+      if (fit != 'cover' && fit != 'contain' && fit != 'fill')
+        throw new SyntaxError(`Fit argument is invalid, use one of cover, contain or fill`);
+    }
 
     let imageWidth = handleDimension(width, 'Width');
     let imageHeight = handleDimension(height, 'Height');
@@ -38,7 +44,8 @@ function convert(input_directory, { output, width, height, only, webp = false })
       webp,
       imageWidth,
       imageHeight,
-      outputDirectory
+      outputDirectory,
+      fit
     );
 
     listenToQueueChange(sharp, convertedCount);
