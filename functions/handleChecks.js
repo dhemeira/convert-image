@@ -7,7 +7,14 @@ function isOptionMissingValue(option) {
 }
 
 function isSupportedFormat(file) {
-  return file.includes('.jpg') || file.includes('.png');
+  return (
+    file.includes('.jpg') ||
+    file.includes('.png') ||
+    file.includes('.svg') ||
+    file.includes('.tiff') ||
+    file.includes('.gif') ||
+    file.includes('.webp')
+  );
 }
 
 function handleDimension(dimension, type) {

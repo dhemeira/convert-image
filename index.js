@@ -10,7 +10,7 @@ try {
   program
     .name('convert-image')
     .description(
-      'converts .jpg and .png files to .webp or resizes them and puts them into the specified output folder.'
+      'Converts image files to .webp or resizes them and puts them into the specified output folder. Supported formats: .jpg, .png, .svg, .tiff, .gif and .webp'
     )
     .argument('<input_directory>', 'the input directory')
     .option(
