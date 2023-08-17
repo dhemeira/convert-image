@@ -28,7 +28,16 @@ function fileConverter(
           converting
             .webp()
             .toFile(
-              `${path.join(outputDirectory, file.replace('.jpg', '').replace('.png', ''))}.webp`
+              `${path.join(
+                outputDirectory,
+                file
+                  .replace('.jpg', '')
+                  .replace('.png', '')
+                  .replace('.svg', '')
+                  .replace('.tiff', '')
+                  .replace('.gif', '')
+                  .replace('.webp', '')
+              )}.webp`
             );
         else converting.toFile(`${path.join(outputDirectory, file)}`);
       }

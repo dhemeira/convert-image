@@ -1,6 +1,6 @@
 # convert-image
 
-This is a package for converting `.jpg` and `.png` files to `.webp` and/or to resize them to a given width and/or height.
+This is a package for converting image files to `.webp` and/or to resize them to a given width and/or height.
 The results are placed inside the specified folder.
 
 [![npm](https://img.shields.io/npm/dw/%40dhemeira/convert-image?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@dhemeira/convert-image)
@@ -70,7 +70,7 @@ Output:
 ```
 Usage: convert-image [options] <input_directory>
 
-converts .jpg and .png files to .webp or resizes them and puts them into the specified output folder.
+Converts image files to .webp or resizes them and puts them into the specified output folder. Supported formats: .jpg, .png, .svg, .tiff, .gif and .webp
 
 Arguments:
   input_directory    the input directory
