@@ -12,6 +12,9 @@
   "bin": {
     "convert-image": "index.js"
   },
+  "publishConfig": {
+    "@dhemeira:registry": "https://npm.pkg.github.com"
+  },
   "keywords": [
     "image",
     "resize",
