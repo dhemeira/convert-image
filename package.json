@@ -1,6 +1,6 @@
 {
   "name": "@dhemeira/convert-image",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "An npm package to mass convert image files to .webp or resize them.",
   "main": "index.js",
   "scripts": {
@@ -11,9 +11,6 @@
   },
   "bin": {
     "convert-image": "index.js"
-  },
-  "publishConfig": {
-    "@dhemeira:registry": "https://npm.pkg.github.com"
   },
   "keywords": [
     "image",
